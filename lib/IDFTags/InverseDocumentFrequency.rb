@@ -1,3 +1,5 @@
+require './Utilities'
+
 
 class InverseDocumentFrequency
 
