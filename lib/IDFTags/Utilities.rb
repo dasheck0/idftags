@@ -11,4 +11,11 @@ class Utilities
     document.split.map(&:strip).select { |t| t == term }.count
   end
 
+  def self.document_frequency term, documents
+    return 0 if term.nil? or documents.nil?
+    documents.select { |document|
+      raw_frequency(term, document) > 0
+    }.count
+  end
+
 end
