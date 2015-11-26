@@ -1,4 +1,4 @@
-require './Utilities'
+require_relative './Utilities'
 
 
 class InverseDocumentFrequency
