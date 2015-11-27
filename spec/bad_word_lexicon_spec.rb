@@ -81,17 +81,17 @@ describe BadWordLexicon do
     end
 
     it 'should create a bad word lexicon instance' do
-      lexicon = BadWordLexicon.from_yml './spec/fixtures/bad_words.yml'
+      lexicon = BadWordLexicon.from_yml './spec/fixtures/en.yml'
       expect(lexicon).to be_an_instance_of BadWordLexicon
     end
 
     it 'should set the locale properly' do
-      lexicon = BadWordLexicon.from_yml './spec/fixtures/bad_words.yml'
+      lexicon = BadWordLexicon.from_yml './spec/fixtures/en.yml'
       expect(lexicon.locale).to eq(:en)
     end
 
     it 'should set the bad words properly' do
-      lexicon = BadWordLexicon.from_yml './spec/fixtures/bad_words.yml'
+      lexicon = BadWordLexicon.from_yml './spec/fixtures/en.yml'
       expect(lexicon.bad_words).to match_array(['yes', 'no', 'idftags', 'yes2'])
     end
   end

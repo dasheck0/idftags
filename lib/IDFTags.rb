@@ -16,7 +16,7 @@ module IDFTags
     end
 
     def tags document, documents, tag_count = 5
-      (prepare_document(document).split.uniq).map { |term|
+      extract_terms(document).map { |term|
         [term, tfidf(term, document, documents)]
       }.sort_by { |v| v.last}.reverse[0..(tag_count-1)].map(&:first)
     end
@@ -31,12 +31,15 @@ module IDFTags
       end
     end
 
-
     def unregister_bad_word_lexicon locale
       @bad_word_lexica.delete_if { |l| l.locale == locale }
     end
 
     private
+
+    def extract_terms document
+      prepare_document(document).split.uniq - @bad_word_lexica.map{ |l| l.nil? ? [] : l.bad_words.map(&:downcase) }.flatten.uniq
+    end
 
     def prepare_document document
       document.downcase.gsub(/(\,|\.)/, '') if document
