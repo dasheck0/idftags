@@ -1,0 +1,8 @@
+en:
+  common:
+    yes: 'yes'
+    no: 'no'
+    maybe:
+      yes2: 'yes2'
+  uncommon:
+    idftags: 'idftags'

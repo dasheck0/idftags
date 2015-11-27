@@ -7,51 +7,66 @@ describe IDFTags do
     @idftags = IDFTags::IDFTags.new
   end
 
-  describe '#tags' do
-
-    context 'challenges' do
-
-      before :each do
-        challenges_raw = JSON.parse File.open('./spec/fixtures/challenges/challenges.json').read
-        @challenges = challenges_raw.map { |v| v['challenge'] }
-      end
-
-      it 'should retrieve 6 tags' do
-        tags = @idftags.tags @challenges.first, @challenges, 6
-        expect(tags.count).to eq(6)
-      end
-
-      it 'should retrieve the proper tags' do
-        tags = @idftags.tags @challenges.first, @challenges, 6
-        expect(tags).to match_array(['the',
-                                     'belt',
-                                     'championship',
-                                     'win',
-                                     'rumble',
-                                     'rails'])
+  describe '#register_bad_word_lexicon' do
+    context 'where bad word lexicon with same locale exists' do
+      it 'should register the bad word lexicon' do
+        lexicon = BadWordLexicon.new(:en, ['test'])
+        @idftags.register_bad_word_lexicon lexicon
+        expect(@idftags.instance_variable_get(:@bad_word_lexica)).to include(lexicon)
       end
     end
 
-    context 'faust' do
-      before :each do
-        faust_raw = JSON.parse File.open('./spec/fixtures/faust/faust.json').read
-        @faust = faust_raw.map { |v| v['document'] }
-      end
+    context 'where bad word lexicon with same locale does not exist' do
+      it 'should add the words' do
+        lexicon1 = BadWordLexicon.new(:en, ['test'])
+        lexicon2 = BadWordLexicon.new(:en, ['test1'])
 
-      it 'should retrieve 6 tags' do
-        tags = (IDFTags::IDFTags.new :weight_raw, :weight_inverse_frequency).tags @faust.first, @faust, 20
-        puts tags
-        #expect(tags.count).to eq(6)
-      end
+        @idftags.register_bad_word_lexicon lexicon1
+        @idftags.register_bad_word_lexicon lexicon2
 
-      it 'should retrieve 6 tags' do
-        tags = (IDFTags::IDFTags.new :weight_log_norm, :weight_probabilistic_inverse_frequency).tags @faust.first, @faust, 20
-        puts tags
-        #expect(tags.count).to eq(6)
+        lexicon = @idftags.instance_variable_get(:@bad_word_lexica).select { |l| l.locale == :en }.first
+        expect(lexicon.bad_words).to match_array(['test', 'test1'])
       end
     end
-
   end
+
+  describe '#unregister_bad_word_lexicon' do
+
+    it 'should not remove other locales' do
+      lexicon1 = BadWordLexicon.new(:en)
+      lexicon2 = BadWordLexicon.new(:de)
+
+      @idftags.register_bad_word_lexicon lexicon1
+      @idftags.register_bad_word_lexicon lexicon2
+
+      expect(@idftags.instance_variable_get(:@bad_word_lexica)).to include(lexicon1)
+      expect(@idftags.instance_variable_get(:@bad_word_lexica)).to include(lexicon2)
+
+      @idftags.unregister_bad_word_lexicon :en
+
+      expect(@idftags.instance_variable_get(:@bad_word_lexica)).to include(lexicon2)
+    end
+
+    context 'where locale is not registered' do
+      it 'should do nothing' do
+        @idftags.unregister_bad_word_lexicon :en
+      end
+    end
+
+    context 'where locale is registered' do
+      it 'should remove the locale' do
+        lexicon = BadWordLexicon.new(:en)
+
+        @idftags.register_bad_word_lexicon lexicon
+        expect(@idftags.instance_variable_get(:@bad_word_lexica)).to include(lexicon)
+
+        @idftags.unregister_bad_word_lexicon :en
+        expect(@idftags.instance_variable_get(:@bad_word_lexica)).to_not include(lexicon)
+      end
+    end
+  end
+
+
 
   describe '#prepare_document' do
     context 'where document is nil' do
