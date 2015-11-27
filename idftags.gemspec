@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'IDFTags/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "IDFTags"
+  spec.name          = "idftags"
   spec.version       = IDFTags::VERSION
   spec.authors       = ["Stefan Neidig"]
   spec.email         = ["stefan@rpdev.net"]
 
   spec.summary       = %q{IDFTags generates tags based on text and documents.}
   spec.description   = %q{IDFTags generates tags based on text and documents. It uses inverse document frequency to calculate the meaning of words.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/dasheck0/idftags"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
