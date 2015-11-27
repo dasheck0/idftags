@@ -48,7 +48,7 @@ You can also use custom weights to refine the output. This is especially useful 
 ```ruby
 require 'idftags'
 
-idftags = IDFTags::IDFTags.new :weight_log_norm, :weight_probablistic_inverse_frequency
+idftags = IDFTags::IDFTags.new :weight_log_norm, :weight_probabilistic_inverse_frequency
 tags = idftags.tags 'document', ['document1', 'document2']
 ```
 Currently available weights:
@@ -68,20 +68,20 @@ Usually you want to exclude certain words from the parsing process since they do
 ```ruby
 require 'idftags'
 
-lexicon = BadWordLexicon.new :en, ['a', 'to']
+lexicon = IDFTags::BadWordLexicon.new :en, ['a', 'to']
 lexicon.add('I')
 lexicon.add_all(['my', 'me'])
 
 idftags = IDFTags::IDFTags.new 
 idftags.register_bad_word_lexicon lexicon
 
-idftags.tags 'I want to see me', [....] # -> ['want', 'see']
+idftags.tags 'I want to see me', [....] # -> ['see', 'want']
 ```
 You can also create bad word lexica from yaml files.
 ```ruby
 require 'idftags'
 
-lexicon = BadWordLexicon.from_yml 'path/to/file.yml'
+lexicon = IDFTags::BadWordLexicon.from_yml 'path/to/file.yml'
 ```
 whereas a yml file should look like this
 ```yaml
