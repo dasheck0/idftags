@@ -1,26 +1,26 @@
 require 'spec_helper'
 
-describe InverseDocumentFrequency do
+describe IDFTags::InverseDocumentFrequency do
 
   before :each do
-    @inverse_document_frequency = InverseDocumentFrequency.new
+    @inverse_document_frequency = IDFTags::InverseDocumentFrequency.new
   end
 
   describe '#initialize' do
     context 'where term frequency is instanciated with inproper weight' do
       it 'should raise an error' do
-        expect { inverse_document_frequency = InverseDocumentFrequency.new :unknown }.to raise_error
+        expect { inverse_document_frequency = IDFTags::InverseDocumentFrequency.new :unknown }.to raise_error
       end
     end
 
     context 'where term frequency is instanciated with a proper weight' do
       it 'should return a term frequency object' do
-        inverse_document_frequency = InverseDocumentFrequency.new :weight_inverse_frequency
-        expect(inverse_document_frequency).to be_an_instance_of InverseDocumentFrequency
+        inverse_document_frequency = IDFTags::InverseDocumentFrequency.new :weight_inverse_frequency
+        expect(inverse_document_frequency).to be_an_instance_of IDFTags::InverseDocumentFrequency
       end
 
       it 'should set the weight properly' do
-        inverse_document_frequency = InverseDocumentFrequency.new :weight_inverse_frequency
+        inverse_document_frequency = IDFTags::InverseDocumentFrequency.new :weight_inverse_frequency
         expect(inverse_document_frequency.instance_variable_get(:@weight)).to eq(:weight_inverse_frequency)
       end
     end

@@ -10,7 +10,7 @@ describe IDFTags do
   describe '#register_bad_word_lexicon' do
     context 'where bad word lexicon with same locale exists' do
       it 'should register the bad word lexicon' do
-        lexicon = BadWordLexicon.new(:en, ['test'])
+        lexicon = IDFTags::BadWordLexicon.new(:en, ['test'])
         @idftags.register_bad_word_lexicon lexicon
         expect(@idftags.instance_variable_get(:@bad_word_lexica)).to include(lexicon)
       end
@@ -18,8 +18,8 @@ describe IDFTags do
 
     context 'where bad word lexicon with same locale does not exist' do
       it 'should add the words' do
-        lexicon1 = BadWordLexicon.new(:en, ['test'])
-        lexicon2 = BadWordLexicon.new(:en, ['test1'])
+        lexicon1 = IDFTags::BadWordLexicon.new(:en, ['test'])
+        lexicon2 = IDFTags::BadWordLexicon.new(:en, ['test1'])
 
         @idftags.register_bad_word_lexicon lexicon1
         @idftags.register_bad_word_lexicon lexicon2
@@ -33,8 +33,8 @@ describe IDFTags do
   describe '#unregister_bad_word_lexicon' do
 
     it 'should not remove other locales' do
-      lexicon1 = BadWordLexicon.new(:en)
-      lexicon2 = BadWordLexicon.new(:de)
+      lexicon1 = IDFTags::BadWordLexicon.new(:en)
+      lexicon2 = IDFTags::BadWordLexicon.new(:de)
 
       @idftags.register_bad_word_lexicon lexicon1
       @idftags.register_bad_word_lexicon lexicon2
@@ -55,7 +55,7 @@ describe IDFTags do
 
     context 'where locale is registered' do
       it 'should remove the locale' do
-        lexicon = BadWordLexicon.new(:en)
+        lexicon = IDFTags::BadWordLexicon.new(:en)
 
         @idftags.register_bad_word_lexicon lexicon
         expect(@idftags.instance_variable_get(:@bad_word_lexica)).to include(lexicon)
@@ -76,7 +76,7 @@ describe IDFTags do
       end
 
       it 'should retrieve 6 tags' do
-        @idftags.register_bad_word_lexicon BadWordLexicon.from_yml('./spec/fixtures/lexica/en.yml')
+        @idftags.register_bad_word_lexicon IDFTags::BadWordLexicon.from_yml('./spec/fixtures/lexica/en.yml')
         tags = @idftags.tags @challenges.first, @challenges, 6
         expect(tags.count).to eq(6)
 
@@ -133,7 +133,7 @@ describe IDFTags do
 
     context 'with a single bad word lexicon' do
       it 'should filter the terms' do
-        @idftags.register_bad_word_lexicon BadWordLexicon.new(:en, ['THIS', 'document'])
+        @idftags.register_bad_word_lexicon IDFTags::BadWordLexicon.new(:en, ['THIS', 'document'])
         terms = @idftags.send(:extract_terms, 'This IS a DOCument')
         expect(terms).to eq(['is', 'a'])
       end
@@ -141,8 +141,8 @@ describe IDFTags do
 
     context 'with multiple bad word lexica' do
       it 'should filter the terms' do
-        @idftags.register_bad_word_lexicon BadWordLexicon.new(:en, ['this', 'document'])
-        @idftags.register_bad_word_lexicon BadWordLexicon.new(:de, ['is'])
+        @idftags.register_bad_word_lexicon IDFTags::BadWordLexicon.new(:en, ['this', 'document'])
+        @idftags.register_bad_word_lexicon IDFTags::BadWordLexicon.new(:de, ['is'])
         terms = @idftags.send(:extract_terms, 'This IS a DOCument')
         expect(terms).to eq(['a'])
       end

@@ -1,26 +1,26 @@
 require 'spec_helper'
 
-describe TermFrequency do
+describe IDFTags::TermFrequency do
 
   before :each do
-    @term_frequency = TermFrequency.new
+    @term_frequency = IDFTags::TermFrequency.new
   end
 
   describe '#initialize' do
     context 'where term frequency is instanciated with inproper weight' do
       it 'should raise an error' do
-        expect { term_frequency = TermFrequency.new :unknown }.to raise_error
+        expect { term_frequency = IDFTags::TermFrequency.new :unknown }.to raise_error
       end
     end
 
     context 'where term frequency is instanciated with a proper weight' do
       it 'should return a term frequency object' do
-        term_frequency = TermFrequency.new :weight_binary
-        expect(term_frequency).to be_an_instance_of TermFrequency
+        term_frequency = IDFTags::TermFrequency.new :weight_binary
+        expect(term_frequency).to be_an_instance_of IDFTags::TermFrequency
       end
 
       it 'should set the weight properly' do
-        term_frequency = TermFrequency.new :weight_log_norm
+        term_frequency = IDFTags::TermFrequency.new :weight_log_norm
         expect(term_frequency.instance_variable_get(:@weight)).to eq(:weight_log_norm)
       end
     end
