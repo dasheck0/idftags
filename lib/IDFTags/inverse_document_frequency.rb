@@ -1,4 +1,4 @@
-require_relative './Utilities'
+require_relative './utilities'
 
 module IDFTags
   class InverseDocumentFrequency

@@ -1,7 +1,7 @@
 require 'IDFTags/version'
-require 'IDFTags/InverseDocumentFrequency'
-require 'IDFTags/TermFrequency'
-require 'IDFTags/BadWordLexicon'
+require 'IDFTags/inverse_document_frequency'
+require 'IDFTags/term_frequency'
+require 'IDFTags/bad_word_lexicon'
 
 module IDFTags
 
