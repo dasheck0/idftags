@@ -92,7 +92,7 @@ describe IDFTags::BadWordLexicon do
 
     it 'should set the bad words properly' do
       lexicon = IDFTags::BadWordLexicon.from_yml './spec/fixtures/lexica/en.yml'
-      expect(lexicon.bad_words).to match_array(%w(I a am an by he in it my no she since the you))
+      expect(lexicon.bad_words).to match_array(%w(I a am an and be by for he in it my of on other she since the to you))
     end
   end
 
