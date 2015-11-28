@@ -1,5 +1,7 @@
 # IDFTags
 
+[![Gem Version](https://badge.fury.io/rb/idftags.svg)](https://badge.fury.io/rb/idftags)
+
 IDFTags extracts tags (or significant words) from a string using the inverse document frequency algorithm. You can find more about this [here](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Definition)
 
 In summary the algorithm considers a document, which is a string a and computes the weighted frequency within that document. This tells us how common the word is. In fact the more interesting value is the inverse document frequency. For this we consider a list of documents and calculate the weighted frequency of a term in all that documents. Multiply this values for the term and you have the tdidf value. Based on this value you can rank the terms of a document and pick the first n values, which are your tags.
