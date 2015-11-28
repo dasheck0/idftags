@@ -2,11 +2,11 @@
 
 IDFTags extracts tags (or significant words) from a string using the inverse document frequency algorithm. You can find more about this [here](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Definition)
 
-In summary the algorithm considers a document, which is a string a and computes the weighted frequency within that document. This tells us how common the word is. In fact the more interesting value is the inverse document frequency. For this we consider a list of documents and calculate the weighted frequency of a term in all that documents. Multiply this values for the term and you have the tdidf value. Based on this value you can rank the terms of a document and pick the first n values, which are your tags.
+In summary the algorithm considers a document, represented as a string, and computes the weighted frequency of each word (term) in that document. This tells us how common the term is. But the more interesting value is the inverse document frequency of a term. For this we consider a list of documents and calculate the weighted frequency of the term in all the documents. Then we multiply these values for the term and we have the tfidf (term frequency inverse document frequency) value. Based on this value we can rank the terms of a document and pick the first n values, which are our tags.
 
 ### What is this?
 
-This is a library to generate tags from a document based on other documents to calculate the meaning of a word. So you have to provide a list of documents to get proper results. This applies very well to titles or content of form posts (like for example stackoverflow). This gem is not meant to extract tags using self learning algorithms, which are solely based on the single document itself. Keep that in mind. There will be an example to showcase the gem.
+This is a library to generate tags from a document based on other documents to calculate the meaning of a word. So you have to provide a list of documents to get proper results. This applies very well to titles or content of forum posts (for example stackoverflow). This gem is not meant to extract tags using self learning algorithms, which are solely based on the single document itself. Keep that in mind before choosing this library for your scenario. There will be an example to showcase the gem.
 
 ## Installation
 
