@@ -1,6 +1,6 @@
 # IDFTags
 
-[![Gem Version](https://badge.fury.io/rb/idftags.svg)](https://badge.fury.io/rb/idftags)
+[![Build Status](https://travis-ci.org/dasheck0/idftags.svg?branch=master)](https://travis-ci.org/dasheck0/idftags) [![Gem Version](https://badge.fury.io/rb/idftags.svg)](https://badge.fury.io/rb/idftags)
 
 IDFTags extracts tags (or significant words) from a string using the inverse document frequency algorithm. You can find more about this [here](https://en.wikipedia.org/wiki/Tf%E2%80%93idf#Definition)
 
