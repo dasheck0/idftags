@@ -8,7 +8,7 @@ In summary the algorithm considers a document, represented as a string, and comp
 
 ### What is this?
 
-This is a library to generate tags from a document based on other documents to calculate the meaning of a word. So you have to provide a list of documents to get proper results. This applies very well to titles or content of forum posts (for example stackoverflow). This gem is not meant to extract tags using self learning algorithms, which are solely based on the single document itself. Keep that in mind before choosing this library for your scenario. There will be an example to showcase the gem.
+This is a library to generate tags from a document based on other documents to calculate the meaning of a word. So you have to provide a list of documents to get proper results. This applies very well to titles or content of forum posts (for example stackoverflow). This gem is not meant to extract tags using self learning algorithms, which are solely based on the single document itself. Keep that in mind before choosing this library for your scenario. For some case studies and a guide on how to use this gem take a look at [this](http://stefan.rpdev.net/2015/11/28/idftags/).
 
 ## Installation
 
