@@ -1,7 +1,7 @@
 en:
   common:
     i: 'I'
-    to: 'no'
+    to: 'to'
     in: 'in'
     the: 'the'
     am: 'am'
@@ -14,3 +14,9 @@ en:
     by: 'by'
     a: 'a'
     an: 'an'
+    be: 'be'
+    of: 'of'
+    and: 'and'
+    on: 'on'
+    for: 'for'
+    other: 'other'
